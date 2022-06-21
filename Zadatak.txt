@@ -1,0 +1,25 @@
+Koriscenjem https://swapi.dev/ API-ja napiraviti aplikaciju sa sledecim feature-ima:
+	1. Page za izlistavaknje karaktera (koristeci paging):
+       		Prikaz kartica o svakom karakteru
+       		Za svaki karakter prikazati "name", "gender", button "Films".
+	2. Kreirati FE search za pretrazivanje informacija o karakteru na osnovu "name" i gender". Pretrazivanje se vrsi samo na datoj stranici.
+	3. Dugme za dodavanje karaktera. Klikom na dugme za dodavanje karaktera otvara se modal koji sadzi  "name", "height","mass", "hair_color","skin_color","eye_color","birth_year","gender": "male". Ovaj karakter se dodaje samo u state (nema dodavanja u bazu).
+		Za ovog karaktera je button "Films" disabled. 
+		Za ovog karaktera je button "Planet" na Character details page takodje disabled.
+	4. Dugme za brisanje karaktera. Klikom na ovo dugme brise se odabran karakter (brisanje samo iz state-a)
+	2. Films modal
+		Klikom na dugme "Films" otvoriti modal za izlistavanje svih filmova datog karaktera.
+		Za svaki fim prikazati "title", "producer","release_date"(ovaj podatak treba biti formatiran).
+	3. Character details page
+		Klikom karticu za odredjenog karaktera treba otvoriti novi page sa detaljima o tom karakteru.
+		Prikazati informacije: "name", "height","mass", "hair_color","skin_color","eye_color","birth_year","gender": "male", button "Planet".
+		Klikom na button "Planet" u nastavku Character details stranice prikazati karticu sa informacijama o planeti na kojoj se nalazi karakter.
+		Za svaku planetu prikazati "name", "rotation_period","orbital_period","gravity".
+Zahtevi koje je potrebno ispuniti:
+	1. React Router,
+	2. Styled components,
+	3. Redux,
+	4. Saga,
+	5. Axios
+	6. Reacy hookovi
+	
