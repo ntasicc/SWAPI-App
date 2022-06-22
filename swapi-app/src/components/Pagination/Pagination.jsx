@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import CharacterCard from "../Character/CharacterCard";
 import classes from "./Pagination.module.css";
+import CardList from "./CardList";
+import { useState } from "react";
 
 const Pagination = (props) => {
-  const characterData = useSelector((state) => state.swData.results);
+  const [isFromApi, setIsFromApi] = useState(true);
   const next = useSelector((state) => state.swData.next);
   const previous = useSelector((state) => state.swData.previous);
   const dispatch = useDispatch();
@@ -25,24 +26,16 @@ const Pagination = (props) => {
   return (
     <>
       <div className={classes.mainContainer}>
-        <div className={classes.cardContainer}>
-          {characterData.map((character, i) => {
-            return (
-              <CharacterCard
-                key={i}
-                name={character.name}
-                gender={character.gender}
-                fromDB={true}
-              ></CharacterCard>
-            );
-          })}
-        </div>
-        <div>
+        <CardList fromApi={isFromApi} openModal={props.openModal}></CardList>
+        <div className={classes.btnGroup}>
           <button disabled={!previous} onClick={loadPreviousPageHandler}>
-            Previous
+            🡰
+          </button>
+          <button onClick={() => setIsFromApi((prevState) => !prevState)}>
+            {isFromApi ? "SWAPI" : "Custom"}
           </button>
           <button disabled={!next} onClick={loadNextPageHandler}>
-            Next
+            🡲
           </button>
         </div>
       </div>

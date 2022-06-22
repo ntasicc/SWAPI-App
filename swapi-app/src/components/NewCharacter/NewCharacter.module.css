@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form button {
+  margin-top: 15px;
+  border-radius: 25px;
+  border-style: none;
+  width: 15%;
+  padding: 10px;
+  font-size: large;
+  font-weight: 600;
+  align-self: center;
+  background-color: gold;
+}
+
+.field {
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.inputDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.inputDiv input {
+  align-self: center;
+  width: 50%;
+}
+
+.inputDiv label {
+  align-self: center;
+  margin-bottom: 5px;
+}

@@ -4,9 +4,27 @@ const CharacterCard = (props) => {
   return (
     <>
       <div className={classes.card}>
-        <p>Name: {props.name}</p>
-        <p>Gender: {props.gender}</p>
-        {props.fromDB && <button onClick={props.onFilmsClick}>Films</button>}
+        <div onClick={() => props.loadCharacter(props.characterData)}>
+          <p>Name: {props.characterData.name}</p>
+          <p>Gender: {props.characterData.gender}</p>
+        </div>
+        <button
+          onClick={(event) =>
+            props.deleteCharacter(
+              props.characterData.id,
+              props.characterData.fromDB
+            )
+          }
+        >
+          Delete
+        </button>
+        {props.characterData.fromDB && (
+          <button
+            onClick={(event) => props.selectFilms(props.characterData.id)}
+          >
+            Films
+          </button>
+        )}
       </div>
     </>
   );
