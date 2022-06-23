@@ -1,6 +1,5 @@
 import CharacterCard from "../Character/CharacterCard";
-import classes from "./CardList.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { characterActions } from "../../store/character-slice";
 import { swDataActions } from "../../store/swData-slice";
@@ -8,9 +7,7 @@ import { swDataActions } from "../../store/swData-slice";
 const CardList = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const characterData = useSelector((state) =>
-    props.fromApi ? state.swData.results : state.swData.customCharacters
-  );
+  const characterData = props.data || [];
 
   const loadFilms = (characterID) => {
     const character = characterData.filter((c) => c.id === characterID);

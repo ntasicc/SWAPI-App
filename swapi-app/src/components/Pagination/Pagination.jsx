@@ -1,35 +1,57 @@
 import { useDispatch, useSelector } from "react-redux";
-import classes from "./Pagination.module.css";
 import CardList from "./CardList";
 import { useState } from "react";
 
+const dataLimit = 10;
+
 const Pagination = (props) => {
   const [isFromApi, setIsFromApi] = useState(true);
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+
   const next = useSelector((state) => state.swData.next);
   const previous = useSelector((state) => state.swData.previous);
+  const characterData = useSelector((state) =>
+    isFromApi ? state.swData.results : state.swData.customCharacters
+  );
   const dispatch = useDispatch();
 
+  const lastPage = Math.floor(characterData.length / dataLimit);
+  const startIndex = currentPageNumber * dataLimit - dataLimit;
+  const endIndex = startIndex + dataLimit;
+
   const loadNextPageHandler = () => {
-    dispatch({
-      type: "FETCH_SWDATA",
-      payload: next,
-    });
+    if (isFromApi)
+      dispatch({
+        type: "FETCH_SWDATA",
+        payload: next,
+      });
+    else setCurrentPageNumber((prevPageNum) => prevPageNum + 1);
   };
 
   const loadPreviousPageHandler = () => {
-    dispatch({
-      type: "FETCH_SWDATA",
-      payload: previous,
-    });
+    if (isFromApi)
+      dispatch({
+        type: "FETCH_SWDATA",
+        payload: previous,
+      });
+    else setCurrentPageNumber((prevPageNum) => prevPageNum - 1);
   };
 
   return (
     <>
-      <div className={classes.mainContainer}>
-        <CardList fromApi={isFromApi} openModal={props.openModal}></CardList>
+      <div className="flex flex-col h-full">
+        <CardList
+          fromApi={isFromApi}
+          openModal={props.openModal}
+          data={
+            isFromApi
+              ? characterData
+              : characterData.slice(startIndex, endIndex)
+          }
+        ></CardList>
         <div className="self-center mt-16">
           <ButtonComponent
-            isDisabled={!previous}
+            isDisabled={isFromApi ? !previous : !(currentPageNumber > 1)}
             onClick={loadPreviousPageHandler}
           >
             🡰
@@ -40,7 +62,10 @@ const Pagination = (props) => {
           >
             {isFromApi ? "SWAPI" : "Custom"}
           </button>
-          <ButtonComponent isDisabled={!next} onClick={loadNextPageHandler}>
+          <ButtonComponent
+            isDisabled={isFromApi ? !next : !(currentPageNumber <= lastPage)}
+            onClick={loadNextPageHandler}
+          >
             🡲
           </ButtonComponent>
         </div>
