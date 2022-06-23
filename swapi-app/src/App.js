@@ -46,12 +46,14 @@ function App() {
 
   return (
     <>
+      <div className="container fixed z-10 max-w-full  top-0">
+        <Header openAddCharacter={openAddCharacterModalHandler}></Header>
+      </div>
       {showAddCharacterModal && (
         <NewCharacter onClose={closeAddCharacterModalHandler}></NewCharacter>
       )}
       {showFilmsModal && <Films onClose={closeFilmsModalHandler}></Films>}
-      <Header openAddCharacter={openAddCharacterModalHandler}></Header>
-      <main>
+      <div className="container max-w-full mt-28">
         <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
           <Routes>
             <Route
@@ -74,7 +76,7 @@ function App() {
             <Route path="*" exact element={<Navigate to="/meals" />}></Route>
           </Routes>
         </Suspense>
-      </main>
+      </div>
     </>
   );
 }

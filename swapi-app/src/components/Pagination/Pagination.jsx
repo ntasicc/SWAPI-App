@@ -27,19 +27,37 @@ const Pagination = (props) => {
     <>
       <div className={classes.mainContainer}>
         <CardList fromApi={isFromApi} openModal={props.openModal}></CardList>
-        <div className={classes.btnGroup}>
-          <button disabled={!previous} onClick={loadPreviousPageHandler}>
+        <div className="self-center mt-16">
+          <ButtonComponent
+            isDisabled={!previous}
+            onClick={loadPreviousPageHandler}
+          >
             🡰
-          </button>
-          <button onClick={() => setIsFromApi((prevState) => !prevState)}>
+          </ButtonComponent>
+          <button
+            className="text-white border-2 border-solid p-2 rounded-md"
+            onClick={() => setIsFromApi((prevState) => !prevState)}
+          >
             {isFromApi ? "SWAPI" : "Custom"}
           </button>
-          <button disabled={!next} onClick={loadNextPageHandler}>
+          <ButtonComponent isDisabled={!next} onClick={loadNextPageHandler}>
             🡲
-          </button>
+          </ButtonComponent>
         </div>
       </div>
     </>
+  );
+};
+
+const ButtonComponent = (props) => {
+  return (
+    <button
+      disabled={props.isDisabled}
+      onClick={props.onClick}
+      className="bg-orange-300 w-10 rounded-md mx-10 h-10"
+    >
+      {props.isDisabled ? "❌" : props.children}
+    </button>
   );
 };
 
