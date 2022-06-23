@@ -1,4 +1,4 @@
-import CharacterCard from "../Character/CharacterCard";
+import CharacterCard from "../Character/CharacterCard/CharacterCard";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { characterActions } from "../../store/character-slice";
@@ -40,8 +40,15 @@ const CardList = (props) => {
   });
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4 justify-evenly mx-3">
-      {cards}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4 justify-evenly mx-3 mb-4">
+      {cards.length > 0 ? (
+        cards
+      ) : (
+        <p className="text-center mt-4 col-start-1 col-end-5 text-2xl text-amber-100 italic">
+          There are currently no characters. You can add them by clicking on the
+          "Add Character" button
+        </p>
+      )}
     </div>
   );
 };

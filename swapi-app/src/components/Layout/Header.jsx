@@ -1,10 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const Header = (props) => {
+  const navigate = useNavigate();
   return (
     <>
       <header className="flex h-20 w-full justify-between max-w-full shadow-xl shadow-black bg-neutral-900">
         <div className="text-center h-full ml-0 lg:ml-24">
-          <h1 className="text-white text-4xl mt-5 md:text-5xl md:mt-4 font-medium">
-            Star Wars 🌌
+          <h1
+            className="text-white text-4xl mt-5 md:text-5xl md:mt-4 font-medium hover:cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            🌌 Star Wars
           </h1>
         </div>
         <div className="h-full mr-0 lg:mr-24">

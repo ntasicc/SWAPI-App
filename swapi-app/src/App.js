@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Pagination from "./components/Pagination/Pagination";
 import Films from "./components/Films/Films";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
-import CharacterInfo from "./components/Character/CharacterInfo";
+import CharacterInfo from "./components/Character/CharacterPage/CharacterInfo";
 import NewCharacter from "./components/NewCharacter/NewCharacter";
 import Header from "./components/Layout/Header";
 let initialRender = true;

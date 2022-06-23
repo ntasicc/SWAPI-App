@@ -40,16 +40,7 @@ const Pagination = (props) => {
   return (
     <>
       <div className="flex flex-col h-full">
-        <CardList
-          fromApi={isFromApi}
-          openModal={props.openModal}
-          data={
-            isFromApi
-              ? characterData
-              : characterData.slice(startIndex, endIndex)
-          }
-        ></CardList>
-        <div className="self-center mt-16">
+        <div className="self-center mb-6">
           <ButtonComponent
             isDisabled={isFromApi ? !previous : !(currentPageNumber > 1)}
             onClick={loadPreviousPageHandler}
@@ -60,7 +51,7 @@ const Pagination = (props) => {
             className="text-white border-2 border-solid p-2 rounded-md"
             onClick={() => setIsFromApi((prevState) => !prevState)}
           >
-            {isFromApi ? "SWAPI" : "Custom"}
+            {!isFromApi ? "SWAPI" : "Custom"}
           </button>
           <ButtonComponent
             isDisabled={isFromApi ? !next : !(currentPageNumber <= lastPage)}
@@ -69,6 +60,15 @@ const Pagination = (props) => {
             🡲
           </ButtonComponent>
         </div>
+        <CardList
+          fromApi={isFromApi}
+          openModal={props.openModal}
+          data={
+            isFromApi
+              ? characterData
+              : characterData.slice(startIndex, endIndex)
+          }
+        ></CardList>
       </div>
     </>
   );
