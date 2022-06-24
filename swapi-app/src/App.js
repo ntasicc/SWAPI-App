@@ -8,12 +8,14 @@ import LoadingSpinner from "./components/UI/LoadingSpinner";
 import CharacterInfo from "./components/Character/CharacterPage/CharacterInfo";
 import NewCharacter from "./components/NewCharacter/NewCharacter";
 import Header from "./components/Layout/Header";
+import StarWarsCrawl from "./components/UI/StarWarsCrawl";
 
 let initialRender = true;
 
 function App() {
   const [showFilmsModal, setShowFilmsModal] = useState(false);
   const [showAddCharacterModal, setShowAddCharacterModal] = useState(false);
+  const [showCrawl, setShowCrawl] = useState(false);
 
   const [filter, setFilter] = useState({
     name: "",
@@ -54,6 +56,10 @@ function App() {
     setShowAddCharacterModal(false);
   };
 
+  const showCrawlHandler = () => {
+    setShowCrawl((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className="container fixed z-10 max-w-full  top-0">
@@ -77,10 +83,22 @@ function App() {
               path="/"
               exact
               element={
-                <Pagination
-                  openModal={openFilmsModuleHandler}
-                  filter={filter}
-                ></Pagination>
+                <>
+                  <button
+                    onClick={showCrawlHandler}
+                    className="text-white bg-orange-600 py-1 px-3 rounded-full fixed ml-4 mt-4 hover:px-4 hover:py-2 hover:ml-3 hover:mt-3 shadow-md shadow-black hover:cursor-pointer z-50"
+                  >
+                    ?
+                  </button>
+                  {!showCrawl ? (
+                    <Pagination
+                      openModal={openFilmsModuleHandler}
+                      filter={filter}
+                    ></Pagination>
+                  ) : (
+                    <StarWarsCrawl />
+                  )}
+                </>
               }
             ></Route>
             <Route
