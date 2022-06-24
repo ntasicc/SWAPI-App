@@ -4,10 +4,12 @@ import axios from "axios";
 
 export function* fetchSWDataSaga(url) {
   yield put(swDataActions.isLoading());
-  const response = yield call(axios.get, url);
-  if (response.status !== 200) yield put(swDataActions.setError);
-
-  yield put(swDataActions.addNewData(response.data));
+  try {
+    const response = yield call(axios.get, url);
+    yield put(swDataActions.addNewData(response.data));
+  } catch (error) {
+    yield put(swDataActions.setError());
+  }
 }
 
 export function* watchFetchSWDataSaga() {

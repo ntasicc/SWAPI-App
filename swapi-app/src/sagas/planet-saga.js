@@ -4,9 +4,12 @@ import axios from "axios";
 
 export function* fetchPlanetSaga(planetURL) {
   yield put(characterActions.isLoading());
-  const response = yield call(axios.get, planetURL);
-  if (response.status !== 200) yield put(characterActions.setError);
-  yield put(characterActions.addHomeworld(response.data));
+  try {
+    const response = yield call(axios.get, planetURL);
+    yield put(characterActions.addHomeworld(response.data));
+  } catch (error) {
+    yield put(characterActions.setError());
+  }
 }
 
 export function* watchFetchPlanetSaga() {

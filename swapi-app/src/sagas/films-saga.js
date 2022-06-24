@@ -3,9 +3,12 @@ import { filmsActions } from "../store/films-slice";
 import axios from "axios";
 
 export function* fetchFromSWAPI(url) {
-  const response = yield call(axios.get, url);
-  if (response.status !== 200) yield put(filmsActions.setError);
-  return response;
+  try {
+    const response = yield call(axios.get, url);
+    return response;
+  } catch (error) {
+    yield put(filmsActions.setError());
+  }
 }
 
 export function* fetchFilmsDataSaga(filmsURL) {
