@@ -21,7 +21,7 @@ const useSpinner = (storeSlice) => {
   const displayData = isLoading ? (
     <LoadingSpinner></LoadingSpinner>
   ) : errorOccurred ? (
-    <p>Error</p>
+    <p>Error occurred, please try again later. ☠️</p>
   ) : null;
 
   return displayData;
