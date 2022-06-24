@@ -1,7 +1,7 @@
 const CharacterCard = (props) => {
   return (
     <>
-      <div className="border-solid border-yellow-300 flex flex-col bg-stone-800 text-white rounded-3xl border-2 p-2 shadow-black shadow-md">
+      <div className="border-solid border-yellow-300 flex flex-col bg-stone-800 text-white rounded-3xl border-2 p-2 shadow-black shadow-lg">
         <div
           onClick={() => props.loadCharacter(props.characterData)}
           className="text-center mb-4 mt-2"

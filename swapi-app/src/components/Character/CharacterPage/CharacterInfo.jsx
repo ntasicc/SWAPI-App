@@ -8,10 +8,9 @@ const CharacterInfo = () => {
   const characterHomeworld = useSelector((state) => state.character.homeworld);
 
   const loadPlanetHandler = () => {
-    console.log("Load planet...");
     dispatch({ type: "FETCH_PLANET", payload: characterData.homeworld });
   };
-  console.log(characterHomeworld);
+
   return (
     <div className="flex flex-col">
       <CharacterInfoDisplay
