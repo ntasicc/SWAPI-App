@@ -12,17 +12,17 @@ const Header = (props) => {
   return (
     <>
       <header className="flex h-20 w-full justify-between max-w-full shadow-xl shadow-black bg-neutral-900">
-        <div className="text-center h-full ml-0 lg:ml-24">
+        <div className="text-center h-full ">
           <h1
-            className="text-white  text-2xl sm:text-4xl mt-5 md:text-5xl md:mt-4 font-medium hover:cursor-pointer"
+            className="text-white  text-2xl sm:text-2xl mt-6 md:text-3xl lg:text-4xl md:mt-5 font-medium hover:cursor-pointer"
             onClick={() => navigate("/")}
           >
             🌌 Star Wars
           </h1>
         </div>
-        <div className="my-auto mr-32">
+        <div className="my-auto flex xl:flex-row flex-col h-14 lg:w-auto w-32 xl:mt-6 lg:-mr-12 ">
           <input
-            className="mr-10 bg-gray-200 rounded-xl text-center h-8 border-amber-500 border-solid border-4"
+            className=" bg-gray-200 rounded-xl text-center h-8 border-amber-500 border-solid border-4 xl:mb-0 mb-2"
             name="name"
             onChange={onChangeHandler}
             placeholder="Enter name..."
