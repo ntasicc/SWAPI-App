@@ -2,6 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
   const navigate = useNavigate();
+
+  const onChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    const newFilter = { ...props.filter, [name]: value };
+    props.setFilter(newFilter);
+  };
   return (
     <>
       <header className="flex h-20 w-full justify-between max-w-full shadow-xl shadow-black bg-neutral-900">
@@ -12,6 +19,20 @@ const Header = (props) => {
           >
             🌌 Star Wars
           </h1>
+        </div>
+        <div className="my-auto mr-32">
+          <input
+            className="mr-10 bg-gray-200 rounded-xl text-center h-8 border-amber-500 border-solid border-4"
+            name="name"
+            onChange={onChangeHandler}
+            placeholder="Enter name..."
+          />
+          <input
+            className="bg-gray-200 rounded-xl text-center h-8 border-amber-500 border-solid border-4"
+            name="gender"
+            onChange={onChangeHandler}
+            placeholder="Enter gender..."
+          />
         </div>
         <div className="h-full mr-0 lg:mr-24">
           <button

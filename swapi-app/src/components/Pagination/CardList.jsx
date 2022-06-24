@@ -29,20 +29,30 @@ const CardList = (props) => {
     dispatch(swDataActions.deleteCharacter({ characterID, fromDB }));
   };
 
-  const cards = characterData.map((character, i) => {
-    return (
-      <CharacterCard
-        key={character.id}
-        characterData={character}
-        loadCharacter={loadCharacterHandler}
-        selectFilms={loadFilms}
-        deleteCharacter={deleteCharacterHandler}
-      ></CharacterCard>
-    );
-  });
+  const cards = characterData
+    .filter(
+      (character) =>
+        character.name
+          .toLowerCase()
+          .startsWith(props.filter.name.toLowerCase()) &&
+        character.gender
+          .toLowerCase()
+          .startsWith(props.filter.gender.toLowerCase())
+    )
+    .map((character, i) => {
+      return (
+        <CharacterCard
+          key={character.id}
+          characterData={character}
+          loadCharacter={loadCharacterHandler}
+          selectFilms={loadFilms}
+          deleteCharacter={deleteCharacterHandler}
+        ></CharacterCard>
+      );
+    });
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 gap-y-4 justify-evenly mx-3 mb-4 ">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 gap-y-6 justify-evenly mx-3 mb-4 ">
       {spinner && <div className="col-span-full mt-24 ml-24">{spinner}</div>}
       {cards.length > 0 && !spinner
         ? cards

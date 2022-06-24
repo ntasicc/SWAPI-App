@@ -40,7 +40,7 @@ const Pagination = (props) => {
   return (
     <>
       <div className="flex flex-col h-full">
-        <div className="self-center mb-6">
+        <div className="self-center mb-10 mt-4">
           <ButtonComponent
             isDisabled={isFromApi ? !previous : !(currentPageNumber > 1)}
             onClick={loadPreviousPageHandler}
@@ -63,6 +63,7 @@ const Pagination = (props) => {
         <CardList
           fromApi={isFromApi}
           openModal={props.openModal}
+          filter={props.filter}
           data={
             isFromApi
               ? characterData

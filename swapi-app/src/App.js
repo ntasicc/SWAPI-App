@@ -8,10 +8,15 @@ import LoadingSpinner from "./components/UI/LoadingSpinner";
 import CharacterInfo from "./components/Character/CharacterPage/CharacterInfo";
 import NewCharacter from "./components/NewCharacter/NewCharacter";
 import Header from "./components/Layout/Header";
+
 let initialRender = true;
 
 function App() {
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState({
+    name: "",
+    gender: "",
+  });
   const [showFilmsModal, setShowFilmsModal] = useState(false);
   const [showAddCharacterModal, setShowAddCharacterModal] = useState(false);
 
@@ -44,10 +49,18 @@ function App() {
     setShowAddCharacterModal(false);
   };
 
+  const setFilterHandler = (value) => {
+    setFilter(value);
+  };
+
   return (
     <>
       <div className="container fixed z-10 max-w-full  top-0">
-        <Header openAddCharacter={openAddCharacterModalHandler}></Header>
+        <Header
+          openAddCharacter={openAddCharacterModalHandler}
+          filter={filter}
+          setFilter={setFilterHandler}
+        ></Header>
       </div>
       {showAddCharacterModal && (
         <NewCharacter onClose={closeAddCharacterModalHandler}></NewCharacter>
@@ -60,7 +73,10 @@ function App() {
               path="/"
               exact
               element={
-                <Pagination openModal={openFilmsModuleHandler}></Pagination>
+                <Pagination
+                  openModal={openFilmsModuleHandler}
+                  filter={filter}
+                ></Pagination>
               }
             ></Route>
             <Route
