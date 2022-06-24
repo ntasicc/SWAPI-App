@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const swDataSlice = createSlice({
   name: "swData",
   initialState: {
-    count: 0,
     next: "",
     previous: "",
     results: [],
@@ -13,7 +12,6 @@ const swDataSlice = createSlice({
   },
   reducers: {
     addNewData(state, action) {
-      state.count = action.payload.count;
       state.next = action.payload.next;
       state.previous = action.payload.previous;
       const newData = action.payload.results.map((entry, i) => {
@@ -34,7 +32,6 @@ const swDataSlice = createSlice({
         );
     },
     addCustomCharacter(state, action) {
-      state.count += 1;
       state.customCharacters = [
         ...state.customCharacters,
         { id: state.count, ...action.payload },

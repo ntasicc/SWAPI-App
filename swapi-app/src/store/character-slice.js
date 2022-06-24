@@ -20,8 +20,6 @@ const characterSlice = createSlice({
     },
     isLoading(state) {
       state.isLoading = true;
-      state.characterArray = [];
-      state.openFilmModule = true;
     },
     setError(state) {
       state.errorOccurred = true;

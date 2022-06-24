@@ -3,8 +3,8 @@ import { swDataActions } from "../store/swData-slice";
 import axios from "axios";
 
 export function* fetchSWDataSaga(url) {
-  yield put(swDataActions.isLoading());
   try {
+    yield put(swDataActions.isLoading());
     const response = yield call(axios.get, url);
     yield put(swDataActions.addNewData(response.data));
   } catch (error) {

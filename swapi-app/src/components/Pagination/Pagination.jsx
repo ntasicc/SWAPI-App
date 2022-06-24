@@ -7,13 +7,14 @@ const dataLimit = 10;
 const Pagination = (props) => {
   const [isFromApi, setIsFromApi] = useState(true);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const dispatch = useDispatch();
 
-  const next = useSelector((state) => state.swData.next);
-  const previous = useSelector((state) => state.swData.previous);
   const characterData = useSelector((state) =>
     isFromApi ? state.swData.results : state.swData.customCharacters
   );
-  const dispatch = useDispatch();
+
+  const next = useSelector((state) => state.swData.next);
+  const previous = useSelector((state) => state.swData.previous);
 
   const lastPage = Math.floor(characterData.length / dataLimit);
   const startIndex = currentPageNumber * dataLimit - dataLimit;
@@ -60,6 +61,7 @@ const Pagination = (props) => {
             🡲
           </ButtonComponent>
         </div>
+
         <CardList
           fromApi={isFromApi}
           openModal={props.openModal}

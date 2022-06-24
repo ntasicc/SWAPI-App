@@ -9,6 +9,7 @@ const Header = (props) => {
     const newFilter = { ...props.filter, [name]: value };
     props.setFilter(newFilter);
   };
+
   return (
     <>
       <header className="flex h-20 w-full justify-between max-w-full shadow-xl shadow-black bg-neutral-900">

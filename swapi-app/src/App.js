@@ -12,13 +12,14 @@ import Header from "./components/Layout/Header";
 let initialRender = true;
 
 function App() {
-  const dispatch = useDispatch();
+  const [showFilmsModal, setShowFilmsModal] = useState(false);
+  const [showAddCharacterModal, setShowAddCharacterModal] = useState(false);
+
   const [filter, setFilter] = useState({
     name: "",
     gender: "",
   });
-  const [showFilmsModal, setShowFilmsModal] = useState(false);
-  const [showAddCharacterModal, setShowAddCharacterModal] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (initialRender) {
@@ -29,6 +30,10 @@ function App() {
       });
     }
   }, [dispatch]);
+
+  const setFilterHandler = (value) => {
+    setFilter(value);
+  };
 
   const closeFilmsModalHandler = () => {
     setShowFilmsModal(false);
@@ -49,10 +54,6 @@ function App() {
     setShowAddCharacterModal(false);
   };
 
-  const setFilterHandler = (value) => {
-    setFilter(value);
-  };
-
   return (
     <>
       <div className="container fixed z-10 max-w-full  top-0">
@@ -62,10 +63,13 @@ function App() {
           setFilter={setFilterHandler}
         ></Header>
       </div>
+
       {showAddCharacterModal && (
         <NewCharacter onClose={closeAddCharacterModalHandler}></NewCharacter>
       )}
+
       {showFilmsModal && <Films onClose={closeFilmsModalHandler}></Films>}
+
       <div className="container max-w-full mt-28">
         <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
           <Routes>

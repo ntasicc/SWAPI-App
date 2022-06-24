@@ -5,6 +5,7 @@ import useSpinner from "../../hooks/use-spinner";
 const Films = (props) => {
   const spinner = useSpinner("filmsData");
   const filmsData = useSelector((state) => state.filmsData.filmsArray);
+
   return (
     <Modal onClose={props.onClose}>
       <div className="text-center">

@@ -3,8 +3,8 @@ import { characterActions } from "../store/character-slice";
 import axios from "axios";
 
 export function* fetchPlanetSaga(planetURL) {
-  yield put(characterActions.isLoading());
   try {
+    yield put(characterActions.isLoading());
     const response = yield call(axios.get, planetURL);
     yield put(characterActions.addHomeworld(response.data));
   } catch (error) {
