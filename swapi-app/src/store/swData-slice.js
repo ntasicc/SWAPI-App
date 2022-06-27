@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const swDataSlice = createSlice({
   name: "swData",
   initialState: {
+    count: 1,
     next: "",
     previous: "",
     results: [],
@@ -36,6 +37,7 @@ const swDataSlice = createSlice({
         ...state.customCharacters,
         { id: state.count, ...action.payload },
       ];
+      state.count += 1;
     },
     isLoading(state) {
       state.isLoading = true;
