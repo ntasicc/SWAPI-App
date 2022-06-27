@@ -26,7 +26,13 @@ const CardList = (props) => {
   };
 
   const deleteCharacterHandler = (characterID, fromDB) => {
-    dispatch(swDataActions.deleteCharacter({ characterID, fromDB }));
+    dispatch(
+      swDataActions.deleteCharacter({
+        characterID,
+        pageNumberApi: props.pageNumberApi,
+        fromDB,
+      })
+    );
   };
 
   const cards = characterData
@@ -42,7 +48,8 @@ const CardList = (props) => {
     .map((character, i) => {
       return (
         <CharacterCard
-          key={character.id}
+          key={i}
+          fromApi={props.fromApi}
           characterData={character}
           loadCharacter={loadCharacterHandler}
           selectFilms={loadFilms}

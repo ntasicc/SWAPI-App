@@ -4,8 +4,6 @@ const swDataSlice = createSlice({
   name: "swData",
   initialState: {
     count: 1,
-    next: "",
-    previous: "",
     results: [],
     customCharacters: [],
     isLoading: false,
@@ -13,20 +11,15 @@ const swDataSlice = createSlice({
   },
   reducers: {
     addNewData(state, action) {
-      state.next = action.payload.next;
-      state.previous = action.payload.previous;
-      const newData = action.payload.results.map((entry, i) => {
-        return { id: i, fromDB: true, ...entry };
-      });
-      state.results = newData;
+      state.results = [...state.results, action.payload];
       state.isLoading = false;
       state.errorOccurred = false;
     },
     deleteCharacter(state, action) {
       if (action.payload.fromDB)
-        state.results = state.results.filter(
-          (entry) => entry.id !== action.payload.characterID
-        );
+        state.results[action.payload.pageNumberApi].results = state.results[
+          action.payload.pageNumberApi
+        ].results.filter((entry) => entry.name !== action.payload.characterID);
       else
         state.customCharacters = state.customCharacters.filter(
           (entry) => entry.id !== action.payload.characterID

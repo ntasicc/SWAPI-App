@@ -7,35 +7,38 @@ const dataLimit = 10;
 const Pagination = (props) => {
   const [isFromApi, setIsFromApi] = useState(true);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [pageNumberApi, setPageNumberApi] = useState(0);
   const dispatch = useDispatch();
 
-  const characterData = useSelector((state) =>
-    isFromApi ? state.swData.results : state.swData.customCharacters
+  const customCharactersData = useSelector(
+    (state) => state.swData.customCharacters
   );
 
-  const next = useSelector((state) => state.swData.next);
-  const previous = useSelector((state) => state.swData.previous);
+  const charactersDataArray = useSelector((state) => state.swData.results);
+  const charactersData =
+    charactersDataArray.length > 0 ? charactersDataArray[pageNumberApi] : [];
 
-  const lastPage = Math.floor(characterData.length / dataLimit);
+  const next = charactersData?.next;
+  const previous = charactersData?.previous;
+
+  const lastPage = Math.ceil(customCharactersData.length / dataLimit);
   const startIndex = currentPageNumber * dataLimit - dataLimit;
   const endIndex = startIndex + dataLimit;
 
-  const loadNextPageHandler = () => {
-    if (isFromApi)
-      dispatch({
-        type: "FETCH_SWDATA",
-        payload: next,
-      });
-    else setCurrentPageNumber((prevPageNum) => prevPageNum + 1);
-  };
-
-  const loadPreviousPageHandler = () => {
-    if (isFromApi)
-      dispatch({
-        type: "FETCH_SWDATA",
-        payload: previous,
-      });
-    else setCurrentPageNumber((prevPageNum) => prevPageNum - 1);
+  const loadPageHandler = (e) => {
+    if (isFromApi) {
+      const testPage =
+        e.target.name === "next" ? pageNumberApi + 1 : pageNumberApi - 1;
+      if (!charactersDataArray[testPage])
+        dispatch({
+          type: "FETCH_SWDATA",
+          payload: e.target.name === "next" ? next : previous,
+        });
+      setPageNumberApi(testPage);
+    } else
+      setCurrentPageNumber((prevPageNum) =>
+        e.target.name === "next" ? prevPageNum + 1 : prevPageNum - 1
+      );
   };
 
   return (
@@ -44,7 +47,8 @@ const Pagination = (props) => {
         <div className="self-center mb-10 mt-4">
           <ButtonComponent
             isDisabled={isFromApi ? !previous : !(currentPageNumber > 1)}
-            onClick={loadPreviousPageHandler}
+            name="prev"
+            onClick={loadPageHandler}
           >
             🡰
           </ButtonComponent>
@@ -55,8 +59,9 @@ const Pagination = (props) => {
             {!isFromApi ? "SWAPI" : "Custom"}
           </button>
           <ButtonComponent
-            isDisabled={isFromApi ? !next : !(currentPageNumber <= lastPage)}
-            onClick={loadNextPageHandler}
+            isDisabled={isFromApi ? !next : currentPageNumber >= lastPage}
+            name="next"
+            onClick={loadPageHandler}
           >
             🡲
           </ButtonComponent>
@@ -64,12 +69,13 @@ const Pagination = (props) => {
 
         <CardList
           fromApi={isFromApi}
+          pageNumberApi={pageNumberApi}
           openModal={props.openModal}
           filter={props.filter}
           data={
             isFromApi
-              ? characterData
-              : characterData.slice(startIndex, endIndex)
+              ? charactersData?.results
+              : customCharactersData.slice(startIndex, endIndex)
           }
         ></CardList>
       </div>
@@ -81,6 +87,7 @@ const ButtonComponent = (props) => {
   return (
     <button
       disabled={props.isDisabled}
+      name={props.name}
       onClick={props.onClick}
       className="bg-orange-300 w-10 rounded-md mx-10 h-10"
     >

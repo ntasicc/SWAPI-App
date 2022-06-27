@@ -16,7 +16,7 @@ const CharacterCard = (props) => {
           </p>
         </div>
         <div className="flex justify-center">
-          {props.characterData.fromDB && (
+          {props.fromApi && (
             <Button onClick={() => props.selectFilms(props.characterData.id)}>
               Films
             </Button>
@@ -24,8 +24,10 @@ const CharacterCard = (props) => {
           <Button
             onClick={() =>
               props.deleteCharacter(
-                props.characterData.id,
-                props.characterData.fromDB
+                props.fromApi
+                  ? props.characterData.name
+                  : props.characterData.id,
+                props.fromApi
               )
             }
           >
