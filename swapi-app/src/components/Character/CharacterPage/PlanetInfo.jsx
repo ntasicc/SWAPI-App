@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const PlanetInfo = (props) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex justify-center mt-16 xl:w-4/5 lg:w-4/5 self-center mx-auto sm:flex-row flex-col">
       <img
@@ -8,19 +12,27 @@ const PlanetInfo = (props) => {
       ></img>
       <div className="md:mx-20 mx-10 sm:mt-0 mt-4">
         <p className="text-white lg:mt-24 md:mt-16 mt-6">
-          <span className="italic text-amber-100 mr-1">Name: </span>
+          <span className="italic text-amber-100 mr-1">
+            {t("planetInfo.name")}
+          </span>
           {props.planet.name}{" "}
         </p>
         <p className="text-white">
-          <span className="italic text-amber-100 mr-1">Rotation period: </span>
+          <span className="italic text-amber-100 mr-1">
+            {t("planetInfo.rotationPeriod")}
+          </span>
           {props.planet.rotation_period}{" "}
         </p>
         <p className="text-white">
-          <span className="italic text-amber-100 mr-1">Orbital period: </span>
+          <span className="italic text-amber-100 mr-1">
+            {t("planetInfo.orbitalPeriod")}
+          </span>
           {props.planet.orbital_period}{" "}
         </p>
         <p className="text-white">
-          <span className="italic text-amber-100 mr-1">Gravity: </span>
+          <span className="italic text-amber-100 mr-1">
+            {t("planetInfo.gravity")}
+          </span>
           {props.planet.gravity}{" "}
         </p>
       </div>

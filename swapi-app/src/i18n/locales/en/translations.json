@@ -1,0 +1,37 @@
+{
+    "characterCard":{
+        "name": "Name: ",
+        "gender": "Gender: ",
+        "film": "Films",
+        "delete": "Delete",
+        "male": "male",
+        "female": "female",
+        "n/a": "n/a"
+    },
+    "characterInfo": {
+        "planet": "Planet",
+        "height": "Height:  ",
+        "mass": "Mass:  ",
+        "hairColor": "Hair color:  ",
+        "skinColor": "Skin color:  ",
+        "eyeColor": "Eye color:  ",
+        "birthYear": "Birth year:  "
+    },
+    "planetInfo": {
+        "name": "Name: ",
+        "rotationPeriod": "Rotation period: ",
+        "orbitalPeriod": "Orbital period: ",
+        "gravity": "Gravity: "
+    },
+    "paging": {
+        "custom": "Custom",
+        "message": "There are currently no characters. You can add them by clicking on the `Add Character` button"
+    },
+    "header": {
+        "namePlaceholder": "Enter name...",
+        "genderPlaceholder": "Enter gender...",
+        "buttonText": "Add Character"
+    },
+    "addBtn": "Add",
+    "filmList": "Film List"
+}

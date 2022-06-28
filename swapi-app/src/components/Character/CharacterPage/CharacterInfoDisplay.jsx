@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const CharacterInfoDisplay = (props) => {
+  const { t } = useTranslation();
+
   return (
     <div className="border-solid border-yellow-300 flex flex-col bg-stone-800 text-white rounded-3xl border-2 p-2 shadow-black shadow-md m-auto mt-10 lg:w-2/5 md:w-3/5 w-4/5">
       <h1 className="text-center text-amber-500 mt-3 text-4xl">
@@ -6,22 +10,22 @@ const CharacterInfoDisplay = (props) => {
       </h1>
       <div className="flex max-w-fit mx-auto mt-6 mb-6 xl:flex-row flex-col">
         <GroupContainer
-          text1={"Height:  "}
+          text1={t("characterInfo.height")}
           data1={props.characterData.height}
-          text2={"Mass:  "}
+          text2={t("characterInfo.mass")}
           data2={props.characterData.mass}
-          text3={"Hair color:  "}
+          text3={t("characterInfo.hairColor")}
           data3={props.characterData.hair_color}
-          text4={"Skin color:  "}
+          text4={t("characterInfo.skinColor")}
           data4={props.characterData.skin_color}
         ></GroupContainer>
         <GroupContainer
-          text1={"Eye color:  "}
+          text1={t("characterInfo.eyeColor")}
           data1={props.characterData.eye_color}
-          text2={"Birth year:  "}
+          text2={t("characterInfo.birthYear")}
           data2={props.characterData.birth_year}
-          text3={"Gender:  "}
-          data3={props.characterData.gender}
+          text3={t("characterCard.gender")}
+          data3={t("characterCard." + props.characterData.gender)}
         ></GroupContainer>
       </div>
     </div>

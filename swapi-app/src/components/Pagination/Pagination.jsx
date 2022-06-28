@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import CardList from "./CardList";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const dataLimit = 10;
 
 const Pagination = (props) => {
+  const { t } = useTranslation();
   const [isFromApi, setIsFromApi] = useState(true);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [pageNumberApi, setPageNumberApi] = useState(0);
@@ -56,7 +58,7 @@ const Pagination = (props) => {
             className="text-white border-2 border-solid p-2 rounded-md"
             onClick={() => setIsFromApi((prevState) => !prevState)}
           >
-            {!isFromApi ? "SWAPI" : "Custom"}
+            {!isFromApi ? "SWAPI" : t("paging.custom")}
           </button>
           <ButtonComponent
             isDisabled={isFromApi ? !next : currentPageNumber >= lastPage}

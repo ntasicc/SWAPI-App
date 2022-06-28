@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { characterActions } from "../../store/character-slice";
 import { swDataActions } from "../../store/swData-slice";
 import useSpinner from "../../hooks/use-spinner";
+import { useTranslation } from "react-i18next";
 
 const CardList = (props) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const spinner = useSpinner("swData");
@@ -21,7 +23,9 @@ const CardList = (props) => {
   };
 
   const loadCharacterHandler = (characterData) => {
-    dispatch(characterActions.addCharacter(characterData));
+    dispatch(
+      characterActions.addCharacter({ characterData, fromApi: props.fromApi })
+    );
     navigate("/character");
   };
 
@@ -65,8 +69,7 @@ const CardList = (props) => {
         ? cards
         : !props.fromApi && (
             <p className="text-center mt-4 col-span-full text-2xl text-amber-100 italic">
-              There are currently no characters. You can add them by clicking on
-              the "Add Character" button
+              {t("paging.message")}
             </p>
           )}
     </div>

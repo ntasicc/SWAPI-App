@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 const CharacterCard = (props) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="border-solid border-yellow-300 flex flex-col bg-stone-800 text-white rounded-3xl border-2 p-2 shadow-black shadow-lg">
@@ -7,18 +11,22 @@ const CharacterCard = (props) => {
           className="text-center mb-4 mt-2"
         >
           <p>
-            <span className="text-gray-300 italic">Name: </span>
+            <span className="text-gray-300 italic">
+              {t("characterCard.name")}
+            </span>
             {props.characterData.name}
           </p>
           <p>
-            <span className="text-gray-300 italic">Gender: </span>
-            {props.characterData.gender}
+            <span className="text-gray-300 italic">
+              {t("characterCard.gender")}
+            </span>
+            {t("characterCard." + props.characterData.gender)}
           </p>
         </div>
         <div className="flex justify-center">
           {props.fromApi && (
             <Button onClick={() => props.selectFilms(props.characterData.id)}>
-              Films
+              {t("characterCard.film")}
             </Button>
           )}
           <Button
@@ -31,7 +39,7 @@ const CharacterCard = (props) => {
               )
             }
           >
-            Delete
+            {t("characterCard.delete")}
           </Button>
         </div>
       </div>

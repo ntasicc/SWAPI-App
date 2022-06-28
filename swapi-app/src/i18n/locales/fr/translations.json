@@ -1,0 +1,37 @@
+{
+    "characterCard":{
+        "name": "Nom: ",
+        "gender": "Le sexe: ",
+        "film": "Films",
+        "delete": "Effacer",
+        "male": "mâle",
+        "female": "femelle",
+        "n/a": "n/a"
+    },
+    "characterInfo": {
+        "planet": "Planète",
+        "height": "Hauteurt:  ",
+        "mass": "Masse:  ",
+        "hairColor": "Couleur de cheveux:  ",
+        "skinColor": "Couleur de peau:  ",
+        "eyeColor": "Couleur des yeux:  ",
+        "birthYear": "Année de naissance:  "
+    },
+    "planetInfo": {
+        "name": "Nom: ",
+        "rotationPeriod": "Période de rotation: ",
+        "orbitalPeriod": "Période orbitale: ",
+        "gravity": "La gravité: "
+    },
+     "paging": {
+        "custom": "Personnalisé",
+        "message": "Il n'y a actuellement aucun personnage. Vous pouvez les ajouter en cliquant sur le bouton `Ajouter un personnage`"
+    },
+    "header": {
+        "namePlaceholder": "Entrez le nom...",
+        "genderPlaceholder": "Entrez le sexe...",
+        "buttonText": "Ajouter un personnage"
+    },
+    "addBtn": "Ajouter",
+    "filmList": "Liste des films"
+}

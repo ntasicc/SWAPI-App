@@ -1,8 +1,10 @@
 import Modal from "../UI/Modal";
 import { useSelector } from "react-redux";
 import useSpinner from "../../hooks/use-spinner";
+import { useTranslation } from "react-i18next";
 
 const Films = (props) => {
+  const { t } = useTranslation();
   const spinner = useSpinner("filmsData");
   const filmsData = useSelector((state) => state.filmsData.filmsArray);
 

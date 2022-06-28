@@ -4,9 +4,11 @@ import { swDataActions } from "../../store/swData-slice";
 import { Formik, Field, Form } from "formik";
 import classes from "./NewCharacter.module.css";
 import ValidationSchema from "./schema";
+import { useTranslation } from "react-i18next";
 
 const NewCharacter = (props) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const addCharacterHandler = (value) => {
     dispatch(swDataActions.addCustomCharacter({ fromDB: false, ...value }));
@@ -33,55 +35,55 @@ const NewCharacter = (props) => {
           <Form className={classes.form}>
             <InputComponent
               name={"name"}
-              text={"Name"}
+              text={t("characterCard.name").replace(":", "")}
               errors={errors.name}
               touched={touched.name}
             />
             <InputComponent
               name={"height"}
-              text={"Height"}
+              text={t("characterInfo.height").replace(":", "")}
               errors={errors.height}
               touched={touched.height}
             />
             <InputComponent
               name={"mass"}
-              text={"Mass"}
+              text={t("characterInfo.mass").replace(":", "")}
               errors={errors.mass}
               touched={touched.mass}
             />
             <InputComponent
               name={"hair_color"}
-              text={"Hair Color"}
+              text={t("characterInfo.hairColor").replace(":", "")}
               errors={errors.hair_color}
               touched={touched.hair_color}
             />
             <InputComponent
               name={"skin_color"}
-              text={"Skin Color"}
+              text={t("characterInfo.skinColor").replace(":", "")}
               errors={errors.skin_color}
               touched={touched.skin_color}
             />
             <InputComponent
               name={"eye_color"}
-              text={"Eye Color"}
+              text={t("characterInfo.eyeColor").replace(":", "")}
               errors={errors.eye_color}
               touched={touched.eye_color}
             />
             <InputComponent
               name={"birth_year"}
-              text={"Birth Year"}
+              text={t("characterInfo.birthYear").replace(":", "")}
               errors={errors.birth_year}
               touched={touched.birth_year}
             />
             <InputComponent
               name={"gender"}
-              text={"Gender"}
+              text={t("characterCard.gender").replace(":", "")}
               errors={errors.gender}
               touched={touched.gender}
             />
 
             <button className={classes.addBtn} type="submit">
-              Add
+              {t("addBtn")}
             </button>
           </Form>
         )}
