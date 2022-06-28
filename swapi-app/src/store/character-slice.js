@@ -4,13 +4,15 @@ const characterSlice = createSlice({
   name: "character",
   initialState: {
     characterData: null,
+    fromApi: false,
     homeworld: null,
     isLoading: false,
     errorOccurred: false,
   },
   reducers: {
     addCharacter(state, action) {
-      state.characterData = action.payload;
+      state.characterData = action.payload.characterData;
+      state.fromApi = action.payload.fromApi;
       state.homeworld = null;
     },
     addHomeworld(state, action) {
